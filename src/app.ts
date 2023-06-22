@@ -1,0 +1,13 @@
+import express from "express";
+import { AppDataSource } from "./database/data-source";
+
+AppDataSource.initialize().then(() => {
+  const app = express();
+
+  app.use(express.json());
+  app.get("/", (req, res) => {
+    return res.json("Tudo Certo!");
+  });
+
+  return app.listen(process.env.PORT);
+});
